@@ -15,11 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import url
 
-
-from menu.views import home, recognition, contact
-
+from django.views.generic import TemplateView
 from django.contrib import admin
 
+
+from menu.views import (
+    # contact_listview,
+    ContactListView,
+    ContactDetailView,
+    ContactCreateView,
+)
 
 urlpatterns = [
     # url(r'^$', admin.site.urls),
@@ -32,7 +37,11 @@ urlpatterns += [
 
 
 urlpatterns += [
-    url(r'^catalog/$', home),
-    url(r'recognition/', recognition),
-    url(r'contact/$', contact),
+    url(r'^catalog/$', TemplateView.as_view(template_name='home.html')),
+    url(r'myprofile/', TemplateView.as_view(template_name='myprofile.html')),
+    url(r'recognition/', TemplateView.as_view(template_name='recognition.html')),
+    # url(r'contact/$', TemplateView.as_view(template_name='contact.html')),
+    url(r'contact/$', ContactListView.as_view()),
+    url(r'contact/create/$', ContactCreateView.as_view()),
+    url(r'contact/(?P<slug>[\w-]+)/$', ContactDetailView.as_view()),
 ]
