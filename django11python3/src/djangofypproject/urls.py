@@ -24,6 +24,7 @@ from menu.views import (
     ContactListView,
     ContactDetailView,
     ContactCreateView,
+    contact_createview,
 )
 
 urlpatterns = [
@@ -43,5 +44,6 @@ urlpatterns += [
     # url(r'contact/$', TemplateView.as_view(template_name='contact.html')),
     url(r'contact/$', ContactListView.as_view()),
     url(r'contact/create/$', ContactCreateView.as_view()),
+    # url(r'contact/create/$', contact_createview),
     url(r'contact/(?P<slug>[\w-]+)/$', ContactDetailView.as_view()),
 ]
