@@ -20,6 +20,7 @@ class ContactImageCreateForm(forms.ModelForm):
         fields = [
             'name',
             'relationship',
+            'slug',
         ]
 
     # custom validation

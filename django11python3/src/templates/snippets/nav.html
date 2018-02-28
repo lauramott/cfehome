@@ -1,7 +1,10 @@
 <div class='container'>
 <h1> Memory assistant </h1>
-<a href='/'> Home</a></br>
-<a href='/myprofile/'> My Profile</a>
-<a href='/recognition/'> Recognition </a></br>
-<a href='/contact/'> Contact</a>
+<a href='{% url "home" %}'> Home</a></br>
+<a href='{% url "myprofile" %}'> My Profile</a>
+<a href='{% url "recognition" %}'> Recognition </a></br>
+{% if request.user.is_authenticated %}
+<a href='{% url "menu:list" %}'> Contacts </a>
+<a href='{% url "facescan:list" %}'> Images </a>
+{% endif %}
 </div>
