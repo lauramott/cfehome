@@ -1,3 +1,7 @@
+from rest_framework_jwt.views import obtain_jwt_token
+from rest_framework_jwt.views import refresh_jwt_token
+from rest_framework_jwt.views import verify_jwt_token
+
 from django.conf.urls import url, include
 
 from django.views.generic import TemplateView
@@ -14,6 +18,12 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 ]
 
+urlpatterns += [
+    url(r'^api/facescan/', include('facescan.api.urls', namespace='api-facescan')),
+    # url(r'^api-token-auth/', obtain_jwt_token),
+    # url(r'^api-token-refresh/', refresh_jwt_token),
+    # url(r'^api-token-verify/', verify_jwt_token),
+]
 
 urlpatterns += [
     url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
@@ -26,6 +36,7 @@ urlpatterns += [
     url(r'^myprofile/$', TemplateView.as_view(template_name='myprofile.html'), name='myprofile'),
     url(r'^recognition/$', TemplateView.as_view(template_name='recognition.html'), name='recognition'),
 ]
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
