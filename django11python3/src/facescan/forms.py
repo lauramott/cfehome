@@ -3,6 +3,7 @@ from .models import Item
 
 from menu.models import ContactDetails
 
+
 class ItemForm(forms.ModelForm):
     class Meta:
         model = Item
@@ -11,7 +12,9 @@ class ItemForm(forms.ModelForm):
             'contact',
             'contents',
             'excludes',
+            'image',
             'public'
+
         ]
 
     def __init__(self, user=None, *args, **kwargs):

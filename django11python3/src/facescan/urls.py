@@ -14,6 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 from .views import (
@@ -27,6 +29,10 @@ from .views import (
 urlpatterns = [
     url(r'create/$', ItemCreateView.as_view(), name='create'),
     # url(r'(?P<pk>\d+)/edit/$', ItemUpdateView.as_view(), name='update'),
-    url(r'(?P<pk>\d+)/$', ItemUpdateView.as_view(), name='detail'),
+    url(r'(?P<slug>[\w-]+)/$', ItemUpdateView.as_view(), name='detail'),
     url(r'^$', ItemListView.as_view(), name='list'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

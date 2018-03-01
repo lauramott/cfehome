@@ -4,6 +4,9 @@
 
 {% block content %}
 <h1>{{ form.instance.name }}</h1>
+    {% if form.instance.image %}
+        <img src='{{ form.instance.image.url }}' class='img-responsive'/>
+    {% endif %}
 <p>Image Name : {{ form.instance.contact.name }}</p>
 {% if form.instance.contents %}
 Contents

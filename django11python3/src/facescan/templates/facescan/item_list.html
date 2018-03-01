@@ -4,10 +4,12 @@
 
 {% block content %}
 <h1>Images: <small><a href='{% url "facescan:create" %}'>Add</a></small></h1>
-
 <ul>
-{% for obj in object_list %}
+    {% for obj in object_list %}
     <li><a href='{{ obj.get_absolute_url }}'>{{ obj.name }}</a><br/>
+        {% if obj.image %}
+            <img src='{{ obj.image.url }}' class='img-responsive'/>
+        {% endif %}
         {% if obj.contents %}
         Contents
         <ul>
@@ -27,12 +29,9 @@
         {% endif %}
 
     </li>
-
     {% empty %}
-    <li><a href='{% url "facescan:create" %}'>Add New Image</a></li>
-
-
-{% endfor %}
+        <li><a href='{% url "facescan:create" %}'>Add New Image</a></li>
+    {% endfor %}
 </ul>
 
 {% endblock %}
