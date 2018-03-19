@@ -12,29 +12,32 @@ from django.conf.urls.static import static
 from django.contrib.auth.views import LoginView, LogoutView
 
 from profiles.views import RegisterView
+# from recognition.views import detect
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 ]
 
-urlpatterns += [
-    url(r'^api/facescan/', include('facescan.api.urls', namespace='api-facescan')),
-    # url(r'^api-token-auth/', obtain_jwt_token),
-    # url(r'^api-token-refresh/', refresh_jwt_token),
-    # url(r'^api-token-verify/', verify_jwt_token),
-]
+# urlpatterns += [
+#     url(r'^api/facescan/', include('facescan.api.urls', namespace='api-facescan')),
+#     # url(r'^api-token-auth/', obtain_jwt_token),
+#     # url(r'^api-token-refresh/', refresh_jwt_token),
+#     # url(r'^api-token-verify/', verify_jwt_token),
+# ]
 
 urlpatterns += [
     url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
     url(r'^register/$', RegisterView.as_view(), name='register'),
     url(r'^login/$', LoginView.as_view(), name='login'),
     url(r'^logout/$', LogoutView.as_view(), name='logout'),
+    url(r'^recognition/', include('recognition.urls', namespace='recognition')),
+    # url(r'^recognition/detect/$', 'recognition.views.detect'),
     url(r'^u/', include('profiles.urls', namespace='profiles')),
     url(r'^items/', include('facescan.urls', namespace='facescan')),
     url(r'^contact/', include('menu.urls', namespace='menu')),
     url(r'^myprofile/$', TemplateView.as_view(template_name='myprofile.html'), name='myprofile'),
-    url(r'^recognition/$', TemplateView.as_view(template_name='recognition.html'), name='recognition'),
+    # url(r'^recognition/$', TemplateView.as_view(template_name='recognition.html'), name='recognition'),
 ]
 
 

@@ -2,7 +2,8 @@
 <h1> Memory assistant </h1>
 <a href='{% url "home" %}'> Home</a></br>
 <a href='{% url "myprofile" %}'> My Profile</a>
-<a href='{% url "recognition" %}'> Recognition </a></br>
+<a href='{% url "recognition:detect" %}'> Recognition-Detect </a></br>
+<a href='{% url "recognition:train" %}'> Recognition-Train </a></br>
 {% if request.user.is_authenticated %}
 <a href='{% url "menu:list" %}'> Contacts </a>
 <a href='{% url "facescan:list" %}'> Images </a>

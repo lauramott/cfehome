@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'recognition',
     'rest_framework',
     'profiles',
     'facescan',
@@ -149,3 +150,5 @@ MEDIA_ROOT = os.path.join(os.path.join(os.path.dirname(BASE_DIR), "media_cdn"))
 
 LOGOUT_REDIRECT_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
+
+# DLIB_ROOT = 'c:\dev\cfehome\django11python3\lib\site-packages'
